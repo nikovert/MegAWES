@@ -35,6 +35,10 @@ Kite_DOF = 6; % Kite degrees of freedom: 3 (point-mass) or 6 (rigid-body)
 % 6DoF: 8m/s  10m/s  14m/s  16m/s  18m/s  20m/s  22m/s  25m/s  28m/s  30m/s
 windspeed = 30; 
 
+constr.winchParameter.a_max = 50;
+constr.winchParameter.a_min = -30;
+constr.F_T_max = 1.26e06;
+
 [act, base_windspeed, constr, DE2019, ENVMT, Lbooth, ...
 	loiterStates, params, simInit, T, winchParameter] = ...
 	Get_simulation_params(windspeed, Kite_DOF);
