@@ -63,7 +63,7 @@ ENVMT.height_max = h(ENVMT.wind_data==max(ENVMT.wind_data)); % keep wind speed c
 base_windspeed = 22; %
 
 %% Initialization parameters
-simInit.TSIM = 1200; % Maximum simulation time 
+simInit.TSIM = 5000; % Maximum simulation time 
 simInit.dt = 0.005; % Fixed-step size
 simInit.FSI_switchtime = 10000; % switching turned off because there is no active FSI
 

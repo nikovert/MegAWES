@@ -33,11 +33,15 @@ clc                                 % Clear command window
 Kite_DOF = 6; % Kite degrees of freedom: 3 (point-mass) or 6 (rigid-body)
 % 3DoF: Forced to 22m/s
 % 6DoF: 8m/s  10m/s  14m/s  16m/s  18m/s  20m/s  22m/s  25m/s  28m/s  30m/s
-windspeed = 30; 
+windspeed = 20; 
 
 [act, base_windspeed, constr, DE2019, ENVMT, Lbooth, ...
 	loiterStates, params, simInit, T, winchParameter] = ...
 	Get_simulation_params(windspeed, Kite_DOF);
+
+% To prevent ocillations when integrating the winch controller, we decrease
+% the step size.
+simInit.dt = 0.0005;
 
 %% Run simulation untill average pumping cycle power convergence
 matlab_version = version('-release');
