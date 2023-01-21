@@ -42,7 +42,7 @@ windspeed = 20;
 % To prevent ocillations when integrating the winch controller, we decrease
 % the step size.
 simInit.dt = 0.0005;
-
+params.kd_winch = 0.0;
 %% Run simulation untill average pumping cycle power convergence
 matlab_version = version('-release');
 if (strcmp(matlab_version,'2019b') || str2double(matlab_version(1:end-1))>2019)
