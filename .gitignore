@@ -9,4 +9,6 @@ resources/
 **/Cache_temp
 git.m
 Extra/*.mp4
+**/test-results
+**/code-coverage
 Run_All_Rishi.m
