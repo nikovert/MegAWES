@@ -1,14 +1,32 @@
 name: Generate Test Artifacts on GitHub-Hosted Runner
 on: [push]
 jobs:
-  my-job:
+   build:
+    strategy:
+      matrix:
+        platform: [ubuntu-latest, windows-latest, macos-latest]
+        release: [R2019b, R2022b, latest]
+        
+    # The type of runner that the job will run on
+    runs-on: ${{matrix.platform}}
+
     name: Run MATLAB Tests and Generate Artifacts
-    runs-on: ubuntu-latest
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
-      - name: Set up MATLAB
-        uses: matlab-actions/setup-matlab@v1
+        
+      # Sets up MATLAB on the GitHub Actions runner
+      - name: Setup MATLAB
+        uses: matlab-actions/setup-matlab@v3
+        with: 
+          release: ${{matrix.release}}
+          products: |
+            Simulink
+            Simulink_Test
+            Simulink_Check
+            curve_fitting_toolbox
+            Stateflow
+        
       - name: Run tests and generate artifacts
         uses: matlab-actions/run-tests@v1
         with:
