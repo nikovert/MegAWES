@@ -248,7 +248,7 @@ t = t0(pointdistances.columnindex);
 
 % we must now do at least some looping, still vectorized where possible.
 % the piecewise linear case is simpler though, so do it separately.
-if strcmp(interpmethod,'linear');
+if strcmp(interpmethod,'linear')
   % loop over the individual points, vectorizing in the number of
   % segments, when there are many segments, but not many points to map.
   if n >= (5*m)
@@ -481,7 +481,7 @@ else
     
     % where does each point fall in terms of fractional cumulative
     % chordal arclength? (i.e., t0?)
-    [tbin,tbin] = histc(t,t0);
+    [~,tbin] = histc(t,t0);
     tbin(tbin < 1) = 1; % being careful at the bottom end
     tbin(tbin >= nbr) = nbr - 1; % if the point fell at the very top...
     
@@ -1159,12 +1159,7 @@ switch params.Subset
           % big or small as requested, keeping only the best
           % params.Limit number of elements
           if size(ijv,1) > params.Limit
-            if ('s'==params.Subset(1))
-              % minimum value specified
-              [tags,tags] = sort(ijv(:,3),1,'ascend'); %#ok
-            else
-              [tags,tags] = sort(ijv(:,3),1,'ascend'); %#ok
-            end
+            [tags,tags] = sort(ijv(:,3),1,'ascend'); %#ok
             ijv = ijv(tags(1:params.Limit),:);
           end
 

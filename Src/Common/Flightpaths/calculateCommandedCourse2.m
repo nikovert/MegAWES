@@ -12,7 +12,7 @@
 % See the License for the specific language governing permissions and
 % limitations under the License.
 
-function [Chi_cmd,Delta_chi,theta, Delta_chi_dot, deltaDot1] = calculateCommandedCourse2(t,delta_vec, delta, delta0, chi_parallel, L_sol, pos_W, v_w_vec, chi_tau_is)
+function [Chi_cmd,Delta_chi,theta, Delta_chi_dot, deltaDot1] = calculateCommandedCourse2(t,~, delta, delta0, chi_parallel, L_sol, pos_W, v_w_vec, chi_tau_is)
 % This function returns the desired course
 %
 % check sign with curve frame - y component is negative in this frame -
@@ -34,9 +34,6 @@ pos_C = M_CW * (pos_W-L_sol);
 
 
 Delta_chi = atan2( -sign(pos_C(2)) * delta, delta0 );
-% Delta_chi = asin( -sign(pos_C(2))*max( min( delta*delta0, 1), -1) ); 
-1;
-
 
 Chi_cmd = chi_parallel + Delta_chi;
 
@@ -55,9 +52,6 @@ if delta < 1e-6
     Delta_chi_dot = 0; 
     deltaDot1 = 0; 
 else  
-    %Delta_chi_dot = sign(pos_C(2)) * norm(v_w_vec/norm(pos_W)) / delta0^2 * delta/(1+(delta/delta0)^2)^(3/2);
-    %deltaDot1 = sign(pos_C(2)) * norm(v_w_vec/norm(pos_W)) * sin(Delta_chi);
-    %deltaDot1 =  (-v_w_vec'/norm(pos_W) * delta_vec );
     e_chi = wrapCourseError( Chi_cmd, chi_tau_is);
     deltaDot1 = -norm( v_w_vec'/norm(pos_W) ) * sign(pos_C(2)) * sin( -Delta_chi + e_chi )  ;
     Delta_chi_dot = -sign(pos_C(2)) / delta0 / (1+(delta/delta0)^2) * deltaDot1; 

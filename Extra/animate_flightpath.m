@@ -114,7 +114,6 @@ fig_pow = figure(1);
 set(gcf, 'Position',  [100, 100, 1400, 1000])
 axes1 = axes('Parent',fig_pow,'Position',[0.13,0.11,0.678584552871244,0.815]);
 hold(axes1,'on');
-fig_pow.Renderer = 'painters';
 view(viewsetting)
 % set(gca,'XColor', 'none','YColor','none','ZColor','none')
 set(gcf, 'color', 'white');
@@ -130,7 +129,7 @@ enhance_plot('Helvetica',25,2,20,0)
 LimitsColorBar = [floor(min(Power)/1)*1 ceil(max(Power)/1)*1];
 cb = colorbar('peer',axes1,'Location','eastoutside','FontSize',16);
 cb.Label.String = 'Power, MW';
-caxis(LimitsColorBar)
+clim(LimitsColorBar)
 cb.FontSize = 16;
 cb.Location = 'eastoutside';
 cb.Position = [0.874536933823625,0.111493416432584,0.010666666666667,0.815];   

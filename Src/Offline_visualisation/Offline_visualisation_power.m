@@ -70,7 +70,6 @@ fig_pow = figure('Name', 'Flight path, power coloured' );
 set(gcf, 'Position',  [100, 100, 1400, 1000])
 axes1 = axes('Parent',fig_pow,'Position',[0.13,0.11,0.678584552871244,0.815]);
 hold(axes1,'on');
-fig_pow.Renderer = 'painters';
 view([16 19])
 % view([138 24])
 % set(gca,'XColor', 'none','YColor','none','ZColor','none')
@@ -94,7 +93,7 @@ colormap(CM)  % Set the colormap of the figure
 
 cb = colorbar('peer',axes1,'Location','eastoutside','FontSize',16);
 cb.Label.String = 'Power [MW]';
-caxis(LimitsColorBar)
+clim(LimitsColorBar)
 cb.FontSize = fontsize;
 cb.Location = 'eastoutside';
 cb.Position = [0.874536933823625,0.111493416432584,0.010666666666667,0.815];   
