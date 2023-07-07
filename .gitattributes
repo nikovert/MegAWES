@@ -24,4 +24,5 @@
 *.png -crlf -diff -merge
 **/*.jpg filter=lfs diff=lfs merge=lfs -text
 **/*.jpeg filter=lfs diff=lfs merge=lfs -text
+**/*.mat filter=lfs diff=lfs merge=lfs -text
 **/*.bdf filter=lfs diff=lfs merge=lfs -text
